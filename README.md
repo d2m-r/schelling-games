@@ -6,4 +6,4 @@ This repo uses data from an online Schelling Games survey to serve as an example
 
 ## Conflicting Changes
 
-This change was made on GitHub.
+These changes were made in RStudio and on GitHub.
