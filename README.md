@@ -1,2 +1,5 @@
-# schelling-games
-example repo using schelling games survey data
+# Schelling Games
+
+## Overview
+
+This repo uses data from an online Schelling Games survey to serve as an example repo for D2M-R.
