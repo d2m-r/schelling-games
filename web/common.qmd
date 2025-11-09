@@ -1,0 +1,6 @@
+---
+title: "common"
+format: html
+---
+
+content to be embedded in all response pages (after filtering)

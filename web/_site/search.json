@@ -1,0 +1,128 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "index",
+    "section": "",
+    "text": "Thomas Schelling introduced the concept of “focal points” in The Strategy of Conflict with the intention of expanding the contemporary perspectives of game theory to include cooperative, not just competitive, games in human decision making SCHELLING. Though his work certainty proved influential in this regard, concepts of focal points and coordination games have found relevance well beyond game theory and or economics as a whole. From improvisational music CANONNE to urban planning RONDINELLI, from human-computer interfacing WONG ET AL to linguistic anthropology BROWN AND LEVINSON, from social stereotyping YOON & HOLLINGSHEAD to online gaming ROSS AND COLLISTER, elements of Schelling’s framework of coordinated decision-making seem ubiquitous.\n\n\nSchelling’s classroom survey asked students questions challenging them to ambiguously “win” a game by coordinating with a stranger. Famously, he asked where and when the participants would meet a stranger in New York City without any prior communication. Additionally, the survey included a series of questions encouraging convergence on a response in more “game-like” circumstances: guessing a number, flipping a coin, etc.\nThis survey is in essence an abbreviated version of Shelling’s. It includes a selection of the “game-like” questions taken directly from Schelling’s survey. Because this survey was conducted at the University of Chicago, the where-and-when question asks about meeting a stranger in Chicago rather than New York City. The survey additionally includs two follow-up questions that were not included in Schelling’s data, changing the interpersonal context between the participant and hypothetical partner.\n\n\n\nResponses have been cleaned to account for predictable variations in how individuals input popular responses – e.g., “the reg”, “Regenstein”, and “In the Reg.” are all reported as “The Reg.” Ambiguous responses (e.g., “the library”) are left ambiguous.\n\n\n\nA total of NUMBER GOES HERE responses to the “meetup location” questions were excluded (out of NUMBER GOES HERE total) or re-coded as “Other”.\nResponses that indicate clear misunderstanding of the question are excluded. These primarily consisted of responses in the “meeting a stranger” or “meeting a student” questions. Since these questions specify that the other party is unknown to the respondent, responses should not assume prior familiarity or experience with the other party, for example “their house”, “the last place we last met”, “where we usually see each other”, or “where you expect them to be at a certain time.”\nResponses to the meetup location questions were coded as “Other” if they included multiple locations without rankings (e.g., “pret or hutch”), were overly vague (e.g., “a major center within the city that everyone knows about”), or fanciful/impossible (e.g., “THE MOON!”)."
+  },
+  {
+    "objectID": "index.html#survey-design",
+    "href": "index.html#survey-design",
+    "title": "index",
+    "section": "",
+    "text": "Schelling’s classroom survey asked students questions challenging them to ambiguously “win” a game by coordinating with a stranger. Famously, he asked where and when the participants would meet a stranger in New York City without any prior communication. Additionally, the survey included a series of questions encouraging convergence on a response in more “game-like” circumstances: guessing a number, flipping a coin, etc.\nThis survey is in essence an abbreviated version of Shelling’s. It includes a selection of the “game-like” questions taken directly from Schelling’s survey. Because this survey was conducted at the University of Chicago, the where-and-when question asks about meeting a stranger in Chicago rather than New York City. The survey additionally includs two follow-up questions that were not included in Schelling’s data, changing the interpersonal context between the participant and hypothetical partner."
+  },
+  {
+    "objectID": "index.html#data-analysis",
+    "href": "index.html#data-analysis",
+    "title": "index",
+    "section": "",
+    "text": "Responses have been cleaned to account for predictable variations in how individuals input popular responses – e.g., “the reg”, “Regenstein”, and “In the Reg.” are all reported as “The Reg.” Ambiguous responses (e.g., “the library”) are left ambiguous.\n\n\n\nA total of NUMBER GOES HERE responses to the “meetup location” questions were excluded (out of NUMBER GOES HERE total) or re-coded as “Other”.\nResponses that indicate clear misunderstanding of the question are excluded. These primarily consisted of responses in the “meeting a stranger” or “meeting a student” questions. Since these questions specify that the other party is unknown to the respondent, responses should not assume prior familiarity or experience with the other party, for example “their house”, “the last place we last met”, “where we usually see each other”, or “where you expect them to be at a certain time.”\nResponses to the meetup location questions were coded as “Other” if they included multiple locations without rankings (e.g., “pret or hutch”), were overly vague (e.g., “a major center within the city that everyone knows about”), or fanciful/impossible (e.g., “THE MOON!”)."
+  },
+  {
+    "objectID": "theme/template.html",
+    "href": "theme/template.html",
+    "title": "Presentation Title",
+    "section": "",
+    "text": "This slide has smaller text\n\nHousekeeping\nand\nannouncements\nwithout\nanimation"
+  },
+  {
+    "objectID": "theme/template.html#housekeeping",
+    "href": "theme/template.html#housekeeping",
+    "title": "Presentation Title",
+    "section": "",
+    "text": "This slide has smaller text\n\nHousekeeping\nand\nannouncements\nwithout\nanimation"
+  },
+  {
+    "objectID": "theme/template.html#housekeeping-1",
+    "href": "theme/template.html#housekeeping-1",
+    "title": "Presentation Title",
+    "section": "Housekeeping",
+    "text": "Housekeeping\nThis slide has bigger text\n\nat least\nI hope so"
+  },
+  {
+    "objectID": "theme/template.html#simple-bulleted-slide",
+    "href": "theme/template.html#simple-bulleted-slide",
+    "title": "Presentation Title",
+    "section": "Simple Bulleted Slide",
+    "text": "Simple Bulleted Slide\n\nA top-level line that will be dimmed at first.\n\nWith a link.\n\nA Third Level Heading\n\n\nFirst level point\nSecond level point - Third level point - Third level point 2\nFirst level point 2"
+  },
+  {
+    "objectID": "theme/template.html#code-slide",
+    "href": "theme/template.html#code-slide",
+    "title": "Presentation Title",
+    "section": "Code Slide",
+    "text": "Code Slide\nIntroductory content:\n\n# Define class name\nclass_name &lt;- \"D2M-R\"\n\n# Print a message with the variable\npaste(\"Hello\", class_name)\n\nMore information about the code above."
+  },
+  {
+    "objectID": "theme/template.html#bubbles-from-the-bottom",
+    "href": "theme/template.html#bubbles-from-the-bottom",
+    "title": "Presentation Title",
+    "section": "Bubbles from the bottom",
+    "text": "Bubbles from the bottom\n\n\nStudents ask? Students ask?Students ask?Students ask?Students ask? Students ask? Students ask? Students ask? Students ask?Students ask?\n\n\nAnd I respond!\n\n\nThis slide has speech bubbles that pop in after all content has been covered.\nThe container is anchored at the bottom of the page, and the tails point downward.\n\nLeft bubbles, in blue, are things I hear commonly from students\nRight bubbles, in red, are my responses"
+  },
+  {
+    "objectID": "theme/template.html#bubbles-from-the-top",
+    "href": "theme/template.html#bubbles-from-the-top",
+    "title": "Presentation Title",
+    "section": "Bubbles from the top",
+    "text": "Bubbles from the top\nOn this slide, things are a little different:\n\nThe container is anchored to the top of the content section.\nBubbles are mirrored vertically with tails pointing up.\n\n\n\nStudents ask - UP TOP?\n\n\nAnd I respond, also up top!"
+  },
+  {
+    "objectID": "theme/template.html#callouts",
+    "href": "theme/template.html#callouts",
+    "title": "Presentation Title",
+    "section": "Callouts",
+    "text": "Callouts\n\n\n\n\n\n\nCall-outs can be used without additional class features.\n\n\n\n\n\n\n\n\n\nTip\n\n\n\nTip: Use call-outs to highlight important information.\n\n\n\n\n\n\n\n\nYou can change the callout header from the default\n\n\n\nNote: These are examples of call-outs.\n\n\n\n\n\n\n\n\nImportant\n\n\n\nImportant: Don’t forget to use call-outs!\n\n\n\n\n\n\n\n\nWarning\n\n\n\nWarning: You have used too many callouts"
+  },
+  {
+    "objectID": "theme/template.html#alerts",
+    "href": "theme/template.html#alerts",
+    "title": "Presentation Title",
+    "section": "Alerts",
+    "text": "Alerts\n\nAlerts are an alternative to callouts.\n\n\n\nThey use fake headings\nBecause using markdown headings within them makes the whole presentation freak out."
+  },
+  {
+    "objectID": "theme/template.html#columns",
+    "href": "theme/template.html#columns",
+    "title": "Presentation Title",
+    "section": "Columns",
+    "text": "Columns\n\n\ntibble\nreimagine the dataframe!\n\nreadr\neasily import and export tabular data\n\ndplyr\na grammar of data manipulation\n\ntidyr\ntidy your messy data\n\nggplot2\na grammar of graphics\n\n\n\n\npurrr\nenhancements for R’s functional programming\n\nstringr\nsimplify working with strings\n\nforcats\nsimplify working with factors"
+  },
+  {
+    "objectID": "theme/template.html#inline-styling",
+    "href": "theme/template.html#inline-styling",
+    "title": "Presentation Title",
+    "section": "Inline Styling",
+    "text": "Inline Styling\nYou can style things like:\n\nbold text\nitalic text\nstrikethrough text\nlinks\ninline code\nfunction_names\npackage_names"
+  },
+  {
+    "objectID": "ma-responses.html",
+    "href": "ma-responses.html",
+    "title": "ma responses",
+    "section": "",
+    "text": "results filtered to MA students only\nembed common.qmd"
+  },
+  {
+    "objectID": "recent-responses.html",
+    "href": "recent-responses.html",
+    "title": "recent-responses",
+    "section": "",
+    "text": "results filtered to recent responses only (useful for showing a current class only their responses)\nembed common.qmd"
+  },
+  {
+    "objectID": "responses.html",
+    "href": "responses.html",
+    "title": "responses",
+    "section": "",
+    "text": "all results from the survey\nembed common.qmd"
+  },
+  {
+    "objectID": "common.html",
+    "href": "common.html",
+    "title": "common",
+    "section": "",
+    "text": "content to be embedded in all response pages (after filtering)"
+  }
+]

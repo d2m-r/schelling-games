@@ -1,3 +1,14 @@
+project:
+    # Each qmd must specify format to allow for both manuscripts
+    # and web content
+    type: default
+    # All subdirectory contents render to a docs directory
+    # preserving root structure
+    output-dir: docs
+    # All subdirectory contents execute from root directory
+    # (all file paths should be relative to root)
+    execute-dir: project
+
 # Allow documents in subdirectories to find the apaquarto extension
 extensions:
     - _extensions/apaquarto

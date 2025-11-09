@@ -1,0 +1,8 @@
+---
+title: "responses"
+format: html
+---
+
+all results from the survey
+
+embed common.qmd
