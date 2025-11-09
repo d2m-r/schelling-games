@@ -1,0 +1,3 @@
+# Allow documents in subdirectories to find the apaquarto extension
+extensions:
+    - _extensions/apaquarto
