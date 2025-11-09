@@ -52,3 +52,7 @@ rsconnect/
 
 # Rendered files
 README.html
+*.pdf
+*.docx
+
+/.quarto/
