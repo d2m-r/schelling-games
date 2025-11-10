@@ -69,3 +69,19 @@ love_connections <- sum(most_pop_time == str_times)
 
 lonely_hearts <- ifelse(on_anything_else ==1, "person", "people")
 
+
+## GGPLOT THEMING ##
+
+
+# Define an additional theme layer that increases font sizes for web only
+
+# NOTE: This will override theme elements set in the plot with minimal(+web),
+# so it needs to come before any specific element theming in the ggplot layers
+# Not sure why it's doing that, since you can just layer on the default
+# themes at the end...
+
+theme_web <- function() {
+    theme_minimal(base_size = 16)
+}
+
+

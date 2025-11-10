@@ -1,0 +1,182 @@
+---
+title: "scrap"
+format: html
+---
+
+<!-- Old section with pie charts (plus messing around with the bar charts that replaced them) -->
+
+
+# Coin Flip 
+
+```{r}
+#| label: coins-data
+#| echo: false
+#| message: false
+#| warning: false
+
+coins <- select(responses_anon, coin_same, coin_different) %>% 
+    pivot_longer(cols = c(coin_same, coin_different), names_to = "goal", names_prefix = "coin_", values_to = "side")
+
+coins$goal <- fct_recode(coins$goal, 'Choose same' = "same", 'Choose different' = "different")
+    
+
+```
+
+
+<!--Begin Coin Flip Tab Nav-->
+::: {#coinTabs .nav .nav-pills .flat-pill role="tablist"}
+
+[Match](#resultsMatchCoin){#tabMatchCoin .nav-link .active data-bs-toggle="pill" data-bs-target="#resultsMatchCoin" type="button" role="tab" aria-selected="true"}
+
+[Differ](#resultsDifferCoin){#tabDifferCoin .nav-link data-bs-toggle="pill" data-bs-target="#resultsDifferCoin" type="button" role="tab" aria-selected="false"}
+
+:::
+
+<!--Begin Tab Content-->
+::: {#coinTabsContent .tab-content .box-grey}
+
+
+::::: {#resultsMatchCoin .tab-pane .fade .show .active role="tabpanel" aria-labelledby="tabMatchCoin" tabindex="0"}
+
+
+:::: callout-spaced
+::: {.callout-note icon=false}
+
+# Aim to Match
+
+You and an anonymous partner need to choose heads or tails. **If you both choose the _SAME_ side, you both win.** If you both choose different sides, you both lose.
+
+:::
+::::
+
+:::: focus-img
+```{r}
+#| label: coins-visualize-same
+#| fig-align: center
+#| out-width: 100%
+#| message: false
+#| warning: false
+#| echo: false
+#| 
+filter(coins, goal=="Choose same") %>% 
+ggplot(aes(x="", fill = side)) + 
+    geom_bar(width=.8) +  
+    coord_polar("y", start=0) +
+    geom_label(stat="count", aes(label=stat(count), group=side), 
+               position = position_stack(vjust = .5),
+               show.legend = F,
+               fill="white") +
+    theme_void() +
+    #facet_wrap(vars(fct_rev(goal))) +
+    theme(strip.text = element_text(size = 20)) +
+    labs(fill = "Coin side") +
+    scale_fill_manual(values=pal_futurama()(10)[5:7])
+```
+::::
+:::::
+
+::::: {#resultsDifferCoin .tab-pane .fade role="tabpanel" aria-labelledby="tabDifferCoin" tabindex="1"}
+
+:::: callout-spaced
+::: {.callout-note icon=false}
+
+# Aim to Differ
+
+You and an anonymous partner need to choose heads or tails. **If you both choose _DIFFERENT_ sides, you both win.** If you both choose the same side, you both lose.
+
+:::
+::::
+
+
+:::: focus-img
+```{r}
+#| label: coins-visualize-diff
+#| fig-align: center
+#| out-width: 100%
+#| message: false
+#| warning: false
+#| echo: false
+
+filter(coins, goal=="Choose different") %>% 
+ggplot(aes(x="", fill = side)) + 
+    geom_bar(width=.8) +  
+    coord_polar("y", start=0) +
+    geom_label(stat="count", aes(label=stat(count), group=side), 
+               position = position_stack(vjust = .5),
+               show.legend = F,
+               fill="white") +
+    theme_void() +
+    #facet_wrap(vars(fct_rev(goal))) +
+    theme(strip.text = element_text(size = 20)) +
+    labs(fill = "Coin side") +
+    scale_fill_manual(values=pal_futurama()(10)[5:7])
+```
+::::
+:::::
+
+
+
+```{r}
+
+coins %>% 
+ggplot(aes(x=goal, fill = side)) + 
+    geom_bar(width=.8) +  
+    geom_label(stat="count", aes(label=stat(count), group=side), 
+               position = position_stack(vjust = .5),
+               #show.legend = F,
+               fill="white") +
+    theme_minimal() +
+    #facet_wrap(vars(fct_rev(goal))) +
+    #theme(strip.text = element_text(size = 20)) +
+    labs(fill = "Coin side") +
+    scale_fill_manual(values=pal_futurama()(10)[5:7])
+
+
+## Make a filled bar chart comparing heads/tails by goal
+## y-axis should be proportion of responses
+## label boxes should be raw counts (like with pie charts above)
+
+coins %>% 
+    ggplot(aes(x=goal, fill = side)) + 
+    geom_bar(position="fill") +
+    geom_text(stat="count", aes(label=stat(count), group=side),
+              position = position_fill(vjust = .5),
+              show.legend = F,
+              color="white") +
+    theme_minimal() +
+    labs(x = "Goal",
+         y = "Proportion of responses",
+         fill = "Coin side") +
+    scale_y_continuous(labels = percent_format()) +
+    scale_fill_manual(values=pal_futurama()(10)[5:7])
+
+ggplot(coins, aes(x = goal, fill = side)) +
+  geom_bar(position = "fill") +
+  geom_label(
+    stat = "count",
+    aes(label = stat(count), group = side),
+    position = position_fill(vjust = 0.5),
+    show.legend = FALSE,
+    fill = "white",
+    color = "black",
+    label.size = 0.3
+  ) +
+  theme_minimal() +
+  labs(
+    x = "Goal",
+    y = "Proportion of responses",
+    fill = "Coin side"
+  ) +
+  scale_y_continuous(labels = percent_format()) +
+  scale_fill_manual(values = pal_futurama()(10)[5:7])
+
+```
+
+
+## Summary Table (%)
+
+```{r coins-props, echo=FALSE}
+round(addmargins(proportions(table(fct_rev(coins$goal), coins$side),1)*100,2),2) %>% kable() %>%  kable_styling(bootstrap_options = c("striped", "hover", "responsive"))
+```
+
+:::

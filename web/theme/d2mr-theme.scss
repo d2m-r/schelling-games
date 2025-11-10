@@ -267,6 +267,27 @@ h6 {
     }
 }
 
+
+// Tabs and Pills
+
+// no margins after pill navigation text
+#meetupTabs p,
+#coinTabs p,
+#numbersTabs p {
+  margin-bottom: 0 !important;
+}
+
+.tab-content.box-grey {
+    background-color: $cool-white;
+    padding: 0px 15px 0px 15px;
+  border-radius: 0 6px 6px 6px; /* top-left, top-right, bottom-right, bottom-left */    
+  border: 2px solid $dark-greystone;
+}
+
+.nav-pills.flat-pill .nav-link {
+    border-radius: 6px 6px 0px 0px; /* top-left, top-right, bottom-right, bottom-left */   
+}
+
 // Accordions
 
 .accordion-button:not(.collapsed) {
@@ -512,6 +533,14 @@ $alert-colors: (
   overflow-wrap: anywhere;
 }
 
+.callout-spaced .callout-header,
+.callout-spaced .callout-body, {
+  padding-top: 1rem !important;
+  padding-bottom: 1rem !important;
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+}
+
 .callout.callout-style-simple {
   padding: 0.4em 0.7em;
   border-left: $callout-border-width solid;
@@ -547,13 +576,14 @@ $alert-colors: (
 
 .callout.callout-titled > .callout-header {
   padding-top: 0.2em;
+  padding-bottom:0.2em;
   margin-bottom: -0.2em;
   color: $black;
 }
 
 .callout.callout-style-simple > div.callout-header {
   border-bottom: none;
-  font-size: 0.9rem;
+  font-size: 1.2rem;
   font-weight: 600;
 }
 
@@ -561,7 +591,7 @@ $alert-colors: (
   border-bottom: none;
   font-weight: 600;
   opacity: 70%;
-  font-size: 0.9rem;
+  font-size: 1.2rem;
   padding-left: 0.5em;
   padding-right: 0.5em;
 }
@@ -570,6 +600,7 @@ $alert-colors: (
   padding-left: 0.5em;
   padding-right: 0.5em;
 }
+
 
 .callout.callout-style-default .callout-body > :first-child {
   padding-top: 0.5rem;
@@ -617,12 +648,12 @@ $code-block-border-left-color: $table-border-color !default;
 
 .callout.callout-style-default .callout-icon::before,
 .callout.callout-style-default .callout-toggle::before {
-  height: 0.9rem;
-  width: 0.9rem;
+  height: 1.2rem;
+  width: 1.2rem;
   display: inline-block;
   content: "";
   background-repeat: no-repeat;
-  background-size: 0.9rem 0.9rem;
+  background-size: 1.2rem 1.2rem;
 }
 
 .callout.callout-style-default .callout-toggle::before {
@@ -754,6 +785,18 @@ $callouts: (
     background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#{colorToRGB($body-color)}" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');
   }
 }
+
+
+// Figures & images
+
+.focus-img .figure img {
+  display: block;                   // Makes the image a block element so margin auto works
+  margin-left: auto;                // Horizontally centers the image
+  margin-right: auto;               // Horizontally centers the image
+  border: 2px solid $type-grey ;   // 2px solid border (color can be set via parent or inline)
+  border-radius: 6px;               // Slightly rounded corners
+}
+
 
 // jsreveal-specific rules
 

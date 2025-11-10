@@ -16,7 +16,7 @@ website:
             - text: About
               href: index.qmd
             - text: All Responses
-              href: responses.qmd
+              href: all-responses.qmd
             - text: MA Responses
               href: ma-responses.qmd
             - text: Recent Responses

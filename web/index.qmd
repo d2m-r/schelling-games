@@ -1,7 +1,19 @@
 ---
-title: "index"
+title: "About Schelling Games"
 format: html
 ---
+
+::: callout-warning
+
+## Page in-progress
+
+This page is in development as an example of Quarto websites for the class Data to Manuscript in R ([D2M-R](https://d2m-r.github.io/))[^1]. 
+
+View the project's GitHub repository [here](https://github.com/d2m-r/schelling-games).
+
+[^1]: The website for which is also being completely redone, but you get the idea.
+
+:::
 
 # Schelling Games
 

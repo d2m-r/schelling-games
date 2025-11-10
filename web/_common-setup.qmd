@@ -1,0 +1,94 @@
+<!-- BEGIN PAGE SETUP -->
+
+```{r}
+#| label: load-packages
+#| include: false
+
+#Load packages that we can assume (for d2m) we all have installed
+library(tidyverse)
+
+#TODO: MAKE THESE REQUIRED!
+library(bslib)
+library(googlesheets4)
+library(kableExtra)
+library(data.table)
+library(lubridate)
+library(scales)
+library(ggsci)
+#library(plotly)
+library(thematic)
+library(showtext)
+
+
+```
+
+```{r}
+#| label: preferences
+#| message: false
+#| warning: false
+#| include: false
+
+# Seed for random number generation
+set.seed(6788)
+knitr::opts_chunk$set(
+    cache.extra = knitr::rand_seed, 
+    fig.showtext = TRUE)
+
+# Set theme for plots
+theme_set(theme_bw(base_size = 16))
+
+#thematic::thematic_rmd(font = "auto")
+
+```
+
+```{r}
+#| label: import-raw-googlesheets
+#| message: false
+#| warning: false
+#| include: false
+
+# 2 OPTIONS FOR DATA READ-IN
+
+# OPTION 1: Read responses from Google sheets
+
+# PRO: Most current data
+# CON: Requires appropriate permissions for the google sheet and maintaining settings in the googlesheets4 pkg
+
+gs4_deauth() # Make sure we are not authenticating with any Google account; sheet is publicly viewable
+responses_raw <- read_sheet("https://docs.google.com/spreadsheets/d/1T4XEXNxmb3jK2WenIR9vRXggT_-_8HDejP0J3qeXFqM/edit?gid=716006696#gid=716006696")
+
+```
+
+```{r}
+#| label: import-raw-csv
+#| eval: false
+#| message: false
+#| warning: false
+#| include: false
+
+# 2 OPTIONS FOR DATA READ-IN:
+
+# OPTION 2: Read intermediary dataset from saved csv file
+# current saved file includes responses from Spring 2020 & Winter 2023
+
+# PRO: Data can be publicly accessible and stored in the GitHub repo as a relatively small csv file
+# CON: May not include recent response data
+
+#responses_raw <- read_csv("../data/responses_raw.csv")
+
+# Note: last 3 columns indicate when the corresponding response is clearly a misinterpretation of the question
+# These errors were manually added based purely on human reasoning and healthy skepticism 
+
+```
+
+```{r}
+#| label: source-files
+#| include: false
+
+# Load custom functions and setup scripts
+source("source/functions.R")
+source("source/setup.R")
+
+```
+
+<!-- END PAGE SETUP -->

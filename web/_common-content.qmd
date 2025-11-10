@@ -1,0 +1,594 @@
+<!-- BEGIN PAGE CONTENT -->
+
+<!-- Container for all meet-up responses and analyses. -->
+
+# Managing to Meet
+
+
+<!--Begin Meetup Tab Nav-->
+::: {#meetupTabs .nav .nav-pills .flat-pill role="tablist"}
+
+[Stranger](#resultsStranger){#tabStranger .nav-link .active data-bs-toggle="pill" data-bs-target="#resultsStranger" type="button" role="tab" aria-selected="true"}
+
+[Student](#resultsStudent){#tabStudent .nav-link data-bs-toggle="pill" data-bs-target="#resultsStudent" type="button" role="tab" aria-selected="false"}
+
+[Friend](#resultsFriend){#tabFriend .nav-link data-bs-toggle="pill" data-bs-target="#resultsFriend" type="button" role="tab" aria-selected="false"}
+
+[Time](#resultsTime){#tabTime .nav-link data-bs-toggle="pill" data-bs-target="#resultsTime" type="button" role="tab" aria-selected="false"}
+
+:::
+
+<!--Begin Tab Content-->
+::: {#meetupTabsContent .tab-content .box-grey}
+
+
+::::: {#resultsStranger .tab-pane .fade .show .active role="tabpanel" aria-labelledby="tabStranger" tabindex="0"}
+
+:::: callout-spaced
+::: {.callout-note icon=false}
+
+### You are meeting a **stranger** in Chicago.
+
+You both know that you need to meet each other today, but you haven't agreed on a place or a time and you have no means of communication. **Where do you go to meet them?** 
+
+*Remember, you cannot communicate with them now or previously in any way!*
+
+:::
+::::
+
+```{r}
+#| label: str-where
+#| include: false
+
+
+# Select stranger meetup column and add cleaning/grouping
+# Making it into a data.table allows for easy in-text references (it will be both a df and a dt)
+
+str_meetup <- data.table(clean_meetup(responses, "str_where", "str_error"))
+
+```
+
+:::: focus-img
+```{r}
+#| label: str-visualize-where
+#| fig-align: center
+#| out-width: 100%
+#| message: false
+#| warning: false
+#| echo: false
+
+# ?Q?: How many levels display in the legend? Why? Can you change that number in just thisfunction call?
+plot_meetup(str_meetup, "str_where_clean")
+
+#ply_str_where <- ggplotly(gg_str_where)
+
+# ?Q?: Since the legend only shows the top n meetup locations (in order), it can be unintuitive what "Other" or "Other (something)" would mean: "Other residence?" Other than what? (other than dorms!). How could you make this more intuitive/understandable?
+
+
+
+```
+::::
+
+## Response Breakdown
+
+:::: {.callout-tip icon=false collapse=true }
+
+### Location Frequency
+
+The most common response for where to meet a *stranger* in Chicago was `r levels(str_meetup$str_where_clean)[1]`, with `r str_meetup[str_where_clean==str_meetup$str_where_clean[1],.N]` responses (`r round((str_meetup[str_where_clean==str_meetup$str_where_clean[1],.N]/str_meetup[,.N])*100,2)`%). <!-- These in-text refs are verbose, but they are entirely data-dependent! If suddenly the Sears tower got way more popular than the Bean, this text would reflect that without any changes. -->
+
+Common responses of Chicago landmarks included the Bean/Cloudgate ($N$ = `r str_meetup[str_where_clean=="The Bean", .N]`), Millennium/Grant Park ($N$ = `r str_meetup[str_where_clean=="Millennium/Grant Park", .N]`), and the Sears/Willis Tower ($N$ = `r str_meetup[str_where_clean=="Sears/Willis Tower", .N]`).
+
+::: {.scroll-500}
+```{r str-kable, echo=FALSE, paged.print=TRUE}
+# Show kable of all (cleaned) responses with raw counts and percent
+kbl_responses(str_meetup, "str_where_clean") %>% kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+```
+:::
+::::
+
+:::: {.callout-warning icon=false collapse=true}
+
+### Other Locations List
+
+
+```{r str-others-response-factors, include=FALSE}
+str_others <- Filter(function(x) x %ilike% "Other", levels(str_meetup$str_where_clean))
+
+```
+
+All responses grouped into "Other" categories (`r paste(str_others, collapse=", ")`):
+
+::: {.scroll-500}
+```{r str-other-response-list, echo=FALSE}
+
+filter(str_meetup, str_where_clean %in% str_others) %>% 
+    mutate(str_where = factor(str_where)) %>% 
+    pull(str_where) %>% 
+    levels() %>% 
+    kable(col.names = c("Other responses")) %>% 
+    kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive")) #%>% 
+    #scroll_box(width = "100%", height = "300px")
+```
+<!--close scroll-->
+::: 
+<!-- close collapse callout -->
+::::
+<!-- close stranger tab content -->
+:::::
+
+
+
+::::: {#resultsStudent .tab-pane .fade role="tabpanel" aria-labelledby="tabStudent" tabindex="1"}
+
+:::: callout-spaced
+::: {.callout-note icon=false}
+
+### You are meeting a **UChicago student** you have not met before.
+
+You both know that you are both UChicago students and that you should meet today somewhere in the city of Chicago, but you haven't agreed on a meeting location and you have no means of communication. **Where do you go to meet them?** 
+
+*Remember, you cannot communicate with them now or previously in any way!*
+
+:::
+::::
+
+```{r}
+#| label: student-where
+#| include: false
+
+student_meetup <- data.table(clean_meetup(responses, "student_where", "student_error"))
+
+```
+
+:::: focus-img
+```{r}
+#| label: student-visualize-where
+#| fig-align: center
+#| out-width: 100%
+#| message: false
+#| warning: false
+#| echo: false
+
+plot_meetup(student_meetup, "student_where_clean")
+```
+::::
+
+## Response Breakdown
+
+:::: {.callout-tip icon=false collapse=true }
+
+### Location Frequency
+
+The most common response for where to meet an *unknown UChicago student* in Chicago was `r levels(student_meetup$student_where_clean)[1]`, with `r student_meetup[student_where_clean==student_meetup$student_where_clean[1],.N]` responses (`r round((student_meetup[student_where_clean==student_meetup$student_where_clean[1],.N]/student_meetup[,.N])*100,2)`%). By comparison, `r ifelse(str_meetup[str_where_clean==student_meetup$student_where_clean[1],.N]==0, "no respondents", paste0("only ", str_meetup[str_where_clean==student_meetup$student_where_clean[1],.N], " respondents (", round((str_meetup[str_where_clean==student_meetup$student_where_clean[1],.N]/str_meetup[,.N])*100,2), "%)"))` chose to meet a stranger at `r levels(student_meetup$student_where_clean)[1]`.
+
+While `r levels(str_meetup$str_where_clean)[1]` was the most common response for where to meet a *stranger* in Chicago, `r ifelse(student_meetup[student_where_clean==str_meetup$str_where_clean[1],.N]==0, "no respondents", paste0("only ", student_meetup[student_where_clean==str_meetup$str_where_clean[1],.N], " respondents (", round((student_meetup[student_where_clean==str_meetup$str_where_clean[1],.N]/student_meetup[,.N])*100,2), "%)"))` chose to meet an unfamiliar UChicago student at `r levels(str_meetup$str_where_clean)[1]`.
+
+::: {.scroll-500}
+```{r student-kable, echo=FALSE, paged.print=TRUE}
+# Show kable of all (cleaned) responses with raw counts and percent
+kbl_responses(student_meetup, "student_where_clean") %>% 
+    kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+
+```
+:::
+::::
+
+:::: {.callout-warning icon=false collapse=true }
+
+### Other Locations List
+
+```{r student-other-response-factors, echo=FALSE}
+student_others <- c(Filter(function(x) x %ilike% "Other", levels(student_meetup$student_where_clean)), "Dorms")
+```
+
+All responses grouped into "Other" or general categories (`r paste(student_others, collapse=", ")`):
+
+::: {.scroll-500}
+```{r student-other-response-list, echo=FALSE}
+
+
+filter(student_meetup, student_where_clean %in% student_others) %>% 
+    mutate(student_where = factor(student_where)) %>% 
+    pull(student_where) %>% 
+    levels() %>% 
+    kable(col.names = c("Other responses")) %>% 
+    kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+```
+:::
+::::
+:::::
+
+::::: {#resultsFriend .tab-pane .fade role="tabpanel" aria-labelledby="tabFriend" tabindex="2"}
+
+:::: callout-spaced
+::: {.callout-note icon=false}
+
+### You are meeting **your closest friend** from UChicago.
+
+You both know you should meet somewhere in the city of Chicago, but you haven't agreed on a meeting location and you have no means of communication. **Where do you go to meet them?** 
+
+*Remember, you cannot communicate with them now or previously in any way!*
+
+:::
+::::
+
+```{r}
+#| label: friend-where
+#| include: false
+
+friend_meetup <- data.table(clean_meetup(responses, "friend_where", "friend_error"))
+
+```
+
+:::: focus-img
+```{r}
+#| label: friend-visualize-where
+#| fig-align: center
+#| out-width: 100%
+#| message: false
+#| warning: false
+#| echo: false
+
+plot_meetup(friend_meetup, "friend_where_clean")
+
+```
+::::
+
+## Response Breakdown
+
+:::: {.callout-tip icon=false collapse=true }
+
+### Location Frequency
+
+The most common response for where to meet a close UChicago friend in Chicago was `r levels(friend_meetup$friend_where_clean)[1]`, with `r friend_meetup[friend_where_clean==friend_meetup$friend_where_clean[1],.N]` responses (`r round((friend_meetup[friend_where_clean==friend_meetup$friend_where_clean[1],.N]/friend_meetup[,.N])*100,2)`%). By comparison, `r ifelse(str_meetup[str_where_clean==friend_meetup$friend_where_clean[1],.N]==0, "no respondents", paste0("only ", str_meetup[str_where_clean==friend_meetup$friend_where_clean[1],.N], " respondents (", round((str_meetup[str_where_clean==friend_meetup$friend_where_clean[1],.N]/str_meetup[,.N])*100,2), "%)"))` chose to meet a stranger at `r levels(friend_meetup$friend_where_clean)[1]` and `r ifelse(student_meetup[student_where_clean==friend_meetup$friend_where_clean[1],.N]==0, "no respondents", paste0("only ", student_meetup[student_where_clean==friend_meetup$friend_where_clean[1],.N], " respondents (", round((student_meetup[student_where_clean==friend_meetup$friend_where_clean[1],.N]/student_meetup[,.N])*100,2), "%)"))` chose to meet an unknown student at `r levels(friend_meetup$friend_where_clean)[1]`.
+
+While `r levels(str_meetup$str_where_clean)[1]` was the most common response for where to meet a *stranger* in Chicago, `r ifelse(friend_meetup[friend_where_clean==str_meetup$str_where_clean[1],.N]==0, "no respondents", paste0("only ", friend_meetup[friend_where_clean==str_meetup$str_where_clean[1],.N], " respondents (", round((friend_meetup[friend_where_clean==str_meetup$str_where_clean[1],.N]/friend_meetup[,.N])*100,2), "%)"))` chose to meet a close UChicago friend at `r levels(str_meetup$str_where_clean)[1]`.
+
+`r levels(student_meetup$student_where_clean)[1]` was the most common response for where to meet an *unfamiliar UChicago student* in Chicago, but `r ifelse(friend_meetup[friend_where_clean==student_meetup$student_where_clean[1],.N]==0, "no respondents", paste0("only ", friend_meetup[friend_where_clean==student_meetup$student_where_clean[1],.N], " respondents (", round((friend_meetup[friend_where_clean==student_meetup$student_where_clean[1],.N]/friend_meetup[,.N])*100,2), "%)"))` chose to meet a close UChicago friend at `r levels(student_meetup$student_where_clean)[1]`.
+
+::: {.scroll-500}
+```{r friend-kable, echo=FALSE, paged.print=TRUE}
+# Show kable of all (cleaned) responses with raw counts and percent
+kbl_responses(friend_meetup, "friend_where_clean") %>% 
+    kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+
+```
+:::
+::::
+
+:::: {.callout-warning icon=false collapse=true }
+
+### Other Locations List
+
+
+```{r friend-other-response-factors, echo=FALSE}
+
+friend_others <- c(Filter(function(x) x %ilike% "Other", levels(friend_meetup$friend_where_clean)), "Dorms", "Recent meeting location")
+
+```
+
+
+All responses grouped into "Other" or general categories (`r paste(friend_others, collapse=", ")`):
+
+::: {.scroll-500}
+```{r friend-other-response-list, echo=FALSE, message=FALSE, warning=FALSE}
+
+filter(friend_meetup, friend_where_clean %in% friend_others) %>% 
+    mutate(friend_where = factor(friend_where)) %>% 
+    pull(friend_where) %>% 
+    levels() %>% 
+    kable(col.names = c("Other responses")) %>% 
+    kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+```
+:::
+::::
+:::::
+
+::::: {#resultsTime .tab-pane .fade role="tabpanel" aria-labelledby="tabTime" tabindex="3"}
+
+:::: callout-spaced
+::: {.callout-note icon=false}
+
+### You are meeting a **stranger** in Chicago.
+
+You both know that you need to meet each other today, but you haven't agreed on a place or a time and you have no means of communication. **What time do you go to meet them?** 
+
+*Remember, you cannot communicate with them now or previously in any way!*
+
+:::
+::::
+
+:::: focus-img
+```{r}
+#| label: str-when
+#| fig-align: center
+#| out-width: 100%
+#| message: false
+#| warning: false
+#| echo: false
+
+# Define limits for x-axis time scale
+# This visually centers 12pm and makes it show even axis ticks instead of odd (since we want 12 to be clear)
+lims <- as.POSIXct(strptime(c("1899-12-29 18:00:00","1899-12-30 18:00:00"), format = "%Y-%m-%d %H:%M:%S")) 
+
+ggplot(filter(responses, !is.na(str_when)), aes(x=str_when)) + 
+    geom_histogram(binwidth=360) +
+    #geom_density(adjust=1/5) +
+    #geom_dotplot() +
+    scale_x_datetime(labels = date_format("%H:%M"),
+                     date_breaks = "2 hours",
+                     limits = lims) +
+    theme_web() +
+    theme(axis.text.x = element_text(angle=45)) +
+    labs(x = "TIME OF DAY",
+         #title = "Meeting a STRANGER in Chicago, WHEN do you go?",
+         subtitle = paste0(nrow(filter(responses,!is.na(str_when))), " total responses"))
+    
+
+```
+::::
+
+```{css, echo=FALSE}
+.scroll-500 {
+  max-height: 500px;
+  overflow-y: auto;
+  background-color: white;
+}
+```
+
+
+## Response Breakdown
+
+::: {.callout-warning icon=false collapse=true }
+
+### Times
+
+<span style="color:#b33a3a">`r round((love_connections/length(str_times))*100,2)`%</span> (`r love_connections` out of `r length(str_times)`) of people chose to meet at **exactly `r format(most_pop_time, "%H:%M")`.**
+
+`r round(((on_the_hour - love_connections)/length(str_times))*100,2)`% chose another time "on the hour" (but not `r format(most_pop_time, "%H:%M")`).
+
+`r round((on_the_thirty/length(str_times))*100,2)`% chose a time "on the half hour."
+
+Just `r round((on_anything_else/length(str_times))*100,2)`% (`r on_anything_else` lonely `r lonely_hearts`) chose anything else.
+
+:::
+::::
+
+<!-- close all tab content -->
+::::::
+
+```{r}
+#| label: anon-responses
+#| include: false
+#| message: false
+#| warning: false
+#| echo: false
+
+## Create a new df with all responses for the coin flip and number questions
+## this avoids unnecessarily dropping rows with errors in the meetup columns
+
+responses_anon <- responses %>% 
+    select(coin_same, coin_different, number_0to10, number_selection, number_big) %>% 
+    drop_na()
+    
+```
+
+
+# Coin Flip 
+
+```{r}
+#| label: coins-data
+#| echo: false
+#| message: false
+#| warning: false
+
+coins <- select(responses_anon, coin_same, coin_different) %>% 
+    pivot_longer(cols = c(coin_same, coin_different), names_to = "goal", names_prefix = "coin_", values_to = "side")
+
+coins$goal <- fct_recode(coins$goal, 'Choose same' = "same", 'Choose different' = "different")
+    
+
+```
+
+
+
+
+
+:::::: callout-spaced
+::::: {.callout-note icon=false}
+
+### You and an anonymous partner each choose heads or tails.
+
+**First, aim to match your partner.** If you both choose *the same* side, you both win. If you choose different sides, you both lose. 
+
+**Second, aim to choose different sides from your partner.** If you both choose *different* sides, you both win. If you both choose the same side, you both lose.
+
+
+:::: focus-img
+
+```{r}
+#| label: coins-visualize-combined
+#| fig-align: center
+#| out-width: 100%
+#| message: false
+#| warning: false
+#| echo: false
+
+## Make a filled bar chart comparing heads/tails by goal
+## y-axis is proportion of responses
+## label boxes are be raw counts
+
+
+ggplot(coins, aes(x = fct_rev(goal), fill = side)) +
+  geom_bar(position = "fill") +
+  geom_label(
+    stat = "count",
+    aes(label = stat(count), group = side),
+    position = position_fill(vjust = 0.5),
+    show.legend = FALSE,
+    fill = "white",
+    color = "black",
+    label.size = 0.3
+  ) +
+  theme_web() +
+  labs(
+    x = "Goal",
+    y = "Proportion of responses",
+    fill = "Coin side"
+  ) +
+  scale_y_continuous(labels = percent_format()) +
+  scale_fill_manual(values = pal_futurama()(10)[5:7])
+
+```
+::::
+
+
+
+## Summary Table (%)
+
+```{r coins-props, echo=FALSE}
+round(addmargins(proportions(table(fct_rev(coins$goal), coins$side),1)*100,2),2) %>% kable() %>%  kable_styling(bootstrap_options = c("striped", "hover", "responsive"))
+```
+
+:::::
+::::::
+
+
+# Numbers
+
+```{r}
+#| label: numbers-data
+#| include: false
+
+
+numbers <- responses_anon %>% 
+    select(starts_with("number")) %>% 
+    mutate(across(1:2, factor, ordered=T),
+           number_big_fct = factor(number_big, ordered=T)) %>% 
+    na.omit()
+
+```
+
+<!--Begin Numbers Tab Nav-->
+
+::: {#numbersTabs .nav .nav-pills .flat-pill role="tablist"}
+
+[0 to 10](#resultsZeroTen){#tabZeroTen .nav-link .active data-bs-toggle="pill" data-bs-target="#resultsZeroTen" type="button" role="tab" aria-selected="true"}
+
+[Fixed Set](#resultsFixedSet){#tabFixedSet .nav-link data-bs-toggle="pill" data-bs-target="#resultsFixedSet" type="button" role="tab" aria-selected="false"}
+
+[Bigger the Better](#resultsBiggerBetter){#tabBiggerBetter .nav-link data-bs-toggle="pill" data-bs-target="#resultsBiggerBetter" type="button" role="tab" aria-selected="false"}
+
+:::
+
+<!--Begin Tab Content-->
+::: {#numbersTabsContent .tab-content .box-grey}
+
+::::: {#resultsZeroTen .tab-pane .fade .show .active role="tabpanel" aria-labelledby="tabZeroTen" tabindex="0"}
+
+:::: callout-spaced
+::: {.callout-note icon=false}
+### Pick a number 0 to 10.
+
+You win if you match your partner.
+
+:::
+::::
+
+:::: focus-img
+```{r}
+#| label: number-0to10-visualize
+#| fig-align: center
+#| out-width: 100%
+#| message: false
+#| warning: false
+#| echo: false
+
+
+ggplot(numbers, aes(x=number_0to10, fill=number_0to10)) + 
+    geom_bar() +
+    #theme_web() +
+    labs(#title="Match an anonymous partner: select 0-10",
+         y=element_blank(),
+         x=element_blank()) +
+    theme_web() +
+    theme(axis.text.x = element_text(size=24),
+          legend.position = "none") +
+    scale_fill_futurama()
+
+```
+::::
+:::::
+
+::::: {#resultsFixedSet .tab-pane .fade role="tabpanel" aria-labelledby="tabFixedSet" tabindex="1"}
+
+:::: callout-spaced
+::: {.callout-note icon=false}
+
+### Select a number from the set.
+
+You win if you match your partner. Each participant sees the numbers in a random order.
+:::
+::::
+
+:::: focus-img
+```{r}
+#| label: number-fixedset-visualize
+#| fig-align: center
+#| out-width: 100%
+#| message: false
+#| warning: false
+#| echo: false
+
+ggplot(numbers, aes(x=number_selection, fill=number_selection)) + 
+    geom_bar() +
+    theme_web() +
+    labs(#title="Match an anonymous partner: select among these numbers",
+         y=element_blank(),
+         x=element_blank()) +
+    theme(axis.text.x = element_text(size=20),
+          legend.position = "none") +
+    scale_fill_futurama()
+```
+::::
+:::::
+
+::::: {#resultsBiggerBetter .tab-pane .fade role="tabpanel" aria-labelledby="tabBiggerBetter" tabindex="2"}
+
+:::: callout-spaced
+::: {.callout-note icon=false}
+
+### Pick any number, the bigger the better.
+
+You win if you match your partner, *and* the bigger the number, the more you both win.
+
+:::
+::::
+
+:::: focus-img
+```{r}
+#| label: number-big-visualize
+#| fig-align: center
+#| out-width: 100%
+#| message: false
+#| warning: false
+#| echo: false
+
+
+mutate(numbers, number_big = factor(as.integer(number_big))) %>% 
+    filter(!is.na(number_big)) %>% 
+ggplot(aes(x=number_big)) + 
+    geom_bar(aes(fill=factor(as.integer(number_big)))) +
+    #geom_histogram(binwidth = 10) +
+    theme_web() +
+    labs(#title="Match an anonymous partner: the bigger the better",
+         y=element_blank(),
+         x=element_blank()) +
+    theme(axis.text.x = element_text(size=10, angle=90, hjust=1),
+          legend.position = "none") 
+```
+::::
+:::::
+:::
+
