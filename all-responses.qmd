@@ -1,0 +1,17 @@
+---
+title: "All Responses"
+format: html
+---
+
+{{< include includes/_common-setup.qmd >}}
+
+<!-- no filter chunk needed -->
+
+::: {.callout-warning icon=false}
+## Responses: All
+
+This page shows results from all survey respondents. Alternatively, view [MA student responses here](ma-responses.html) or [recent responses here](recent-responses.html).
+:::
+
+
+{{< include includes/_common-content.qmd >}}

@@ -1,0 +1,25 @@
+---
+title: "Recent Responses"
+format: html
+---
+
+{{< include includes/_common-setup.qmd >}}
+
+```{r}
+#| label: filter-to-recent-only
+#| message: false
+#| warning: false
+#| include: false
+
+
+# Filter responses to only reponses from the last 90 days
+responses <- filter(responses, timestamp >= (Sys.Date() - 90))
+```
+
+::: {.callout-warning icon=false}
+## Responses: Recent Only
+
+This page shows only recent responses from the last 90 days. Alternatively, view [all responses here](all-responses.qmd) or [all MA student responses here](ma-responses.qmd).
+:::
+
+{{< include includes/_common-content.qmd >}}

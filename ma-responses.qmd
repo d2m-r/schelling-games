@@ -1,0 +1,26 @@
+---
+title: "MA Responses"
+format: html
+---
+
+{{< include includes/_common-setup.qmd >}}
+
+```{r}
+#| label: filter-to-ma-only
+#| message: false
+#| warning: false
+#| include: false
+
+
+# Filter responses to only reponses where uc_status contains the string "MAPSS"
+responses <- filter(responses, grepl("MAPSS", uc_status))
+```
+
+::: {.callout-warning icon=false}
+## Responses: MA Students Only
+
+This page shows results only for respondents who indicated they are MA students. Alternatively, view [all responses here](all-responses.qmd) or [recent responses here](recent-responses.qmd).
+:::
+
+
+{{< include includes/_common-content.qmd >}}

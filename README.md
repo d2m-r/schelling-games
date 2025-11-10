@@ -10,7 +10,7 @@ Importantly, this is by no means intended to present reliable, rigorous data or 
 2.  Offering an example repository to students getting started with R, Quarto, and GitHub.
 
 For anyone falling into the second category who is using this repo as a reference, you should note that this repo uses Quarto to create both an APA formatted manuscript (i.e., a Quarto document using the apaquarto extensions) and a Quarto website for displaying survey results.
-If you are only interested in one or the other, not all files in the repo (or lines of code in specific project-level files) will be necessary for your purposes.
+Due to the way github quarto pages interact, the root level of the repo contains the website elements. The manuscript elements are in the `artices` folder.
 
 Finally, because this repo is intended to be a learning tool, the .qmd and .R files contained within include many comments in both the markdown and code. 
 Some comments are very over-explain-y. 
