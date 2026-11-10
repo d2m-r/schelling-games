@@ -13,7 +13,7 @@ format: html
 
 
 # Filter responses to only reponses from the last 90 days
-responses <- filter(responses, timestamp >= (Sys.Date() - 90))
+responses <- filter(responses, timestamp >= (Sys.Date() - (365+90))) # TEMPORARILY ADD 1 YEAR TO AVOID EMPTY LIST
 ```
 
 ::: {.callout-warning icon=false}

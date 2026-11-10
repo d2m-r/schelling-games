@@ -447,7 +447,8 @@ ggplot(coins, aes(x = fct_rev(goal), fill = side)) +
 
 ## Summary Table (%)
 
-```{r coins-props, echo=FALSE}
+```{r coins-props}
+#| echo: false
 round(addmargins(proportions(table(fct_rev(coins$goal), coins$side),1)*100,2),2) %>% kable() %>%  kable_styling(bootstrap_options = c("striped", "hover", "responsive"))
 ```
 
