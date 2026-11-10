@@ -20,6 +20,8 @@ responses <- filter(responses, timestamp >= (Sys.Date() - 90))
 ## Responses: Recent Only
 
 This page shows only recent responses from the last 90 days. Alternatively, view [all responses here](all-responses.qmd) or [all MA student responses here](ma-responses.qmd).
+
+See [very recent responses here](very-recent-responses.qmd) from the last 90 minutes.
 :::
 
 {{< include includes/_common-content.qmd >}}
