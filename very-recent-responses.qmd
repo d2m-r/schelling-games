@@ -19,7 +19,7 @@ responses <- filter(responses, timestamp >= (Sys.time() - (60*500)))
 ::: {.callout-warning icon=false}
 ## Responses: Recent Only
 
-This page shows only recent responses from the last 90 days. Alternatively, view [all responses here](all-responses.qmd) or [all MA student responses here](ma-responses.qmd).
+This page shows only recent responses from the last 90 minutes. Alternatively, view [all responses here](all-responses.qmd) or [all MA student responses here](ma-responses.qmd).
 :::
 
 {{< include includes/_common-content.qmd >}}
